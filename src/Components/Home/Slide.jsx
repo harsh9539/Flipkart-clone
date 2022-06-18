@@ -4,6 +4,7 @@ import { Box, styled } from "@mui/system";
 import Carousel from "react-multi-carousel"
 import Countdown from 'react-countdown';
 import 'react-multi-carousel/lib/styles.css';
+import { Link } from "react-router-dom";
 const responsive = {
 
     desktop: {
@@ -49,7 +50,7 @@ font-size:14;
 margin-top:5px;
 `
 
-const Slide = (props) => {
+const Slide = ({products,title,timer}) => {
 
     const timerURL = 'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/timer_a73398.svg';
 
@@ -60,9 +61,9 @@ const Slide = (props) => {
     return (
         <BoxComp>
             <Deal>
-                <DealText>{props.title}</DealText>
+                <DealText>{title}</DealText>
                 {
-                    props.timer && <Timer>
+                    timer && <Timer>
                         <img src={timerURL} style={{ width: 24 }} alt="timer" />
                         <Countdown date={Date.now() + 5.04e+7} renderer={renderer} />
                     </Timer>
@@ -91,13 +92,15 @@ const Slide = (props) => {
                 itemClass="carousel-item-padding-40-px"
             >
                 {
-                    props.products.map(product => (
+                    products.map(product => (
+                        <Link to={`product/${product.id}`} style={{textDecoration:'none'}}>
                         <Box style={{ padding: '25px 15px' }} textAlign='center'>
                             <Image src={product.url} alt='product' />
                             <Text style={{ fontWeight: 600, color: '#212121' }}>Here is the Title</Text>
-                            <Text style={{ color: 'green' }}>{props.products.discount}</Text>
-                            <Text style={{ color: '#212121' }}>{props.products.tagline}</Text>
+                            <Text style={{ color: 'green' }}>{product.discount}</Text>
+                            <Text style={{ color: '#212121' }}>{product.tagline}</Text>
                         </Box>
+                        </Link>
                     ))
                 }
             </Carousel>

@@ -2,7 +2,7 @@ import React from 'react'
 //Sections
 import Search from './Search.jsx'
 import CustomButton from './CustomButton.jsx'
-
+import { Link } from 'react-router-dom'
 import { AppBar, Toolbar, styled, Box, Typography } from '@mui/material'
 //This is used to overwrite the css of exsisting element
 // All overwrited elements
@@ -10,9 +10,11 @@ const StyleHeader = styled(AppBar)`
 background:#2874f0;
 height:55px;
 `
-const BoxComp  = styled(Box)`
+const BoxComp  = styled(Link)`
 margin-left:12%;
 line-height:0;
+text-decoration:none;
+color:inherit
 `
 const SubHeading = styled(Typography)`
 font-size:10px;
@@ -31,7 +33,7 @@ const Header = () => {
         <StyleHeader>
             <Toolbar style={{minHeight:'55px'}}>
                 {/* Div is replaced by  box in materialUi */}
-                <BoxComp>
+                <BoxComp to='/' >
                     <img src={logoURL} alt="logo" style={{width:75}} />
                     <Box style={{display:'flex'}}>
                         {/* p is replaced by typography in materialUi */}
