@@ -7,20 +7,28 @@ import LoginDialog from '../Login/LoginDialog';
 import Profile from './Profile';
 
 // overwrite
-const Wrapper = styled(Box)
-    `
-display:flex;
-margin: 0 3% 0 5%;
+const Wrapper = styled(Box)(({ theme }) => ({
+    display: "flex",
+    margin: "0 3% 0 5%",
 
-&>button,&>p,&>div{
-    margin-right:40px;
-    font-size:16px;
-    align-items:center;
-}
-`
-const BoxContain = styled(Box)`
-display:flex;
-`
+    "&>button,&>p,&>div": {
+        marginRight: "40px",
+        fontSize: "16px",
+        alignItems: "center"
+    },
+    [theme.breakpoints.down('md')]: {
+        display: 'block'
+    }
+}))
+
+const BoxContain = styled(Box)(({ theme }) => ({
+    display: "flex",
+    [theme.breakpoints.down('md')]: {
+        display: 'block'
+    }
+
+}))
+
 const LoginButton = styled(Button)`
 color:#2874f0;
 background:#fff;
@@ -33,14 +41,14 @@ height:32px
 `
 const CustomButton = () => {
     const [open, setOpen] = useState(false);
-    const { account,setAccount } = useContext(DataContext);
+    const { account, setAccount } = useContext(DataContext);
     const openDialog = () => {
         setOpen(true);
     }
     return (
         <Wrapper>
             {
-                account ? <Profile account={account} setAccount={setAccount}/> :
+                account ? <Profile account={account} setAccount={setAccount} /> :
                     <LoginButton onClick={() => openDialog()} variant='contained'>Login</LoginButton>
             }
             <Typography style={{ marginTop: 3, width: 140 }}>Become a Seller</Typography>
