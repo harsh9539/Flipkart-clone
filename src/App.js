@@ -5,6 +5,9 @@ import Home from './Components/Home/Home';
 import DataProvider from './context/DataProvider.jsx';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import DetailsView from './Components/Details/DetailsView.jsx';
+import Cart from './Components/Cart/Cart.jsx';
+
+
 function App() {
   return (
     <DataProvider >
@@ -14,6 +17,7 @@ function App() {
         <Routes>
         <Route path='/' element={<Home />}/>
         <Route path='/product/:id' element={<DetailsView/>}/>
+        <Route path='/cart' element={<Cart/>}/>
         </Routes>
       </Box>
       </BrowserRouter>

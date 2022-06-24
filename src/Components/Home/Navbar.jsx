@@ -7,6 +7,7 @@ const BoxComp = styled(Box)(({theme}) => ({
 display:'flex',
 margin:"55px 130px 0 130px",
 justifyContent:"space-between",
+background:'white',
 overflow:'hidden',
 [theme.breakpoints.down('md')]: {
     margin:"0 0 0 0",
@@ -23,6 +24,7 @@ font-family:inherit;
 `
 const Navbar = () => {
     return (
+        <Box style={{background:'white'}}>
         <BoxComp>
             {
                 navData.map((data)=>{
@@ -35,6 +37,7 @@ const Navbar = () => {
                 })
             }
         </BoxComp>
+        </Box>
     )
 }
 
