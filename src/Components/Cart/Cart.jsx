@@ -2,10 +2,11 @@
 import { Box, Button, Grid, styled, Typography } from '@mui/material';
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { payUsingPaytm } from '../../service/api';
 import CartItem from './CartItem';
 import EmptyCart from './EmptyCart';
 import TotalView from './TotalView';
-
+import { post } from '../../utils/paytm';
 
 const Container = styled(Grid)(({theme})=>({
     padding:'30px 135px',
@@ -43,6 +44,16 @@ const LeftComp = styled(Grid)(({theme})=>({
 
 const Cart = () => {
     const {cartItems} = useSelector(state=> state.cart);
+    const buyNow =  async()=>{
+        console.log("buyhoja")
+        let response =await payUsingPaytm({amount:500,email:"harsh9539@gmail.com"})
+        let information = {
+            action:'https://securegw-stage.paytm.in/order/process',
+            params: response
+        }
+        console.log(information);
+        post(information)
+    }
     return (
         <>
             {
@@ -58,7 +69,7 @@ const Cart = () => {
                             ))
                         }
                     <ButtonWrapper>
-                        <StyledButton>Place Order</StyledButton>
+                        <StyledButton onClick={()=>buyNow()}>Place Order</StyledButton>
                     </ButtonWrapper>
                     </LeftComp>
                     <Grid item lg={3} md={3} sm={12} xs={12}>

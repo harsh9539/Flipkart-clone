@@ -1,6 +1,6 @@
 import React, { useState,useContext } from 'react'
 import { Button, Dialog, TextField, Box, Typography, styled } from '@mui/material'
-import {authenticateSignup,authenticateLogin} from '../../Service/api.js'
+import {authenticateSignup,authenticateLogin} from '../../service/api.js'
 import {DataContext} from '../../context/DataProvider'
 
 //overwriting
